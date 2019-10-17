@@ -1,0 +1,62 @@
+{
+  "name": "ssr-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/core": "^10.0.17",
+    "@emotion/styled": "^10.0.17",
+    "cheerio": "^1.0.0-rc.3",
+    "compression": "^1.7.4",
+    "emotion": ">=10.0.17",
+    "emotion-normalize": "^10.1.0",
+    "emotion-server": "^10.0.17",
+    "express": "^4.17.1",
+    "multistream": "^4.0.0",
+    "parcel-plugin-bundle-manifest": "^0.2.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "react-imported-component": "^6.1.1",
+    "react-router": ">=5.0.1",
+    "react-router-config": "^5.0.1",
+    "react-router-dom": "^5.0.1"
+  },
+  "scripts": {
+    "dev": "parcel app/index.html",
+    "build": "rimraf dist && npm run build-client && npm run build-server && npm run build-server-stream",
+    "build-imported": "imported-components app app/imported-chunk.js",
+    "build-client": "cross-env BABEL_ENV=client parcel build app/index.html -d dist/client --public-url /dist --no-minify --no-cache",
+    "build-server": "cross-env BABEL_ENV=server parcel build server/index.ts -d dist/server --public-url /dist --target=node --no-minify --no-cache",
+    "build-server-stream": "cross-env BABEL_ENV=server parcel build stream-server/index.ts -d dist/server-stream --public-url /dist --target=node --no-minify  --no-cache",
+    "start": "node dist/server",
+    "start:stream": "node dist/server-stream"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.6.0",
+    "@types/node": "^12.7.5",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-dynamic-import-node": "^2.3.0",
+    "cross-env": "^5.2.1",
+    "parcel-bundler": "^1.12.3",
+    "react-hot-loader": "^4.12.13",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.6.3"
+  }
+}
